@@ -11,11 +11,15 @@ jobs:
           with:
               repository: dudarboh/LCIO
               path: lcio
+
+        - uses: mattnotmitt/doxygen-action@v1
+          with:
+              working-directory: 'lcio/doc'
+              doxyfile-path: 'Doxyfile'
+
         - run: |
-            cd lcio/doc
-            doxygen Doxyfile
-            mv ./html ../../docs/lcio/
-            mv DoxyLCIO.tag ../../tags/
+            mv ./lcio/doc/html ./docs/lcio/
+            mv ./lcio/doc/DoxyLCIO.tag ./tags/
 
         - name: Deploy
           uses: peaceiris/actions-gh-pages@v3
