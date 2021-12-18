@@ -9,6 +9,6 @@ jobs:
         steps:
         - uses: actions/checkout@master
           with:
-              name: dudarboh/LCIO        
+              repository: dudarboh/LCIO
         - name: Setup tmate session
           uses: mxschmitt/action-tmate@v3
