@@ -8,8 +8,7 @@ jobs:
 
         steps:
         - uses: actions/checkout@master
-            with:
-                name: dudarboh/LCIO     <-- clone https://github.com/org1/repo1
-                
+          with:
+              name: dudarboh/LCIO        
         - name: Setup tmate session
-            uses: mxschmitt/action-tmate@v3
+          uses: mxschmitt/action-tmate@v3
