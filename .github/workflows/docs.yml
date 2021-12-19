@@ -10,7 +10,7 @@ jobs:
         - name: Checkout iLCSoftDoc repository
           uses: actions/checkout@master
           with:
-              path: main
+              path: iLCSoftDoc
               ref: docs_with_actions
 
         - name: Checkout LCIO repository
@@ -27,11 +27,12 @@ jobs:
 
         - name: Copy documentation to the iLCSoftDoc
           run: |
-            cp -r ./lcio/doc/html ./main/docs/lcio/
-            cp ./lcio/doc/DoxyLCIO.tag ./main/tags/
+            cp -r ./lcio/doc/html ./iLCSoftDoc/docs/lcio/
+            cp ./lcio/doc/DoxyLCIO.tag ./iLCSoftDoc/tags/
 
         - name: Push iLCSoftDoc changes
           run: |
+              cd ./iLCSoftDoc
               git config --global user.name 'Bohdan Dudar'
               git config --global user.email 'bohdan.dudar@desy.de'
               git commit -am "Publish LCIO documentation"
