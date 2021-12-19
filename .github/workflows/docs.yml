@@ -35,6 +35,7 @@ jobs:
               cd ./iLCSoftDoc
               git config --global user.name 'Bohdan Dudar'
               git config --global user.email 'bohdan.dudar@desy.de'
+              git add ./*
               git commit -am "Publish LCIO documentation"
               git push
 
