@@ -24,16 +24,16 @@ jobs:
               working-directory: 'lcio/doc'
               doxyfile-path: 'Doxyfile'
 
-        - name: Start interactive debug session
-          uses: mxschmitt/action-tmate@v3
-
         - name: Copy documentation to the iLCSoftDoc
           run: |
-            mv ./lcio/doc/html ./main/docs/lcio/
-            mv ./lcio/doc/DoxyLCIO.tag ./main/tags/
+            cp -r ./lcio/doc/html ./main/docs/lcio/
+            cp ./lcio/doc/DoxyLCIO.tag ./main/tags/
 
         - name: Push iLCSoftDoc changes to the webpage.
           uses: peaceiris/actions-gh-pages@v3
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             publish_branch: docs_with_actions
+
+        - name: Start interactive debug session
+          uses: mxschmitt/action-tmate@v3
