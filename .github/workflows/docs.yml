@@ -18,6 +18,9 @@ jobs:
               working-directory: 'lcio/doc'
               doxyfile-path: 'Doxyfile'
 
+        - name: Setup tmate session
+          uses: mxschmitt/action-tmate@v3
+
         - run: |
             mv ./lcio/doc/html ./docs/lcio/
             mv ./lcio/doc/DoxyLCIO.tag ./tags/
@@ -27,6 +30,3 @@ jobs:
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
             publish_branch: docs_with_actions  # default: gh-pages
-
-        - name: Setup tmate session
-          uses: mxschmitt/action-tmate@v3
