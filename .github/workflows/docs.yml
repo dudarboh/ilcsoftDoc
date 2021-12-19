@@ -12,8 +12,8 @@ jobs:
           with:
               path: main
 
-        -name Checkout LCIO repository
-        - uses: actions/checkout@master
+        - name: Checkout LCIO repository
+          uses: actions/checkout@master
           with:
               repository: dudarboh/LCIO
               path: lcio
@@ -25,7 +25,7 @@ jobs:
               doxyfile-path: 'Doxyfile'
 
         - name: Copy documentation to the iLCSoftDoc
-        - run: |
+          run: |
             mv ./lcio/doc/html ./main/docs/lcio/
             mv ./lcio/doc/DoxyLCIO.tag ./main/tags/
 
