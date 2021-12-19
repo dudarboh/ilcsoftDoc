@@ -7,26 +7,33 @@ jobs:
         runs-on: ubuntu-latest
 
         steps:
+        - name: Checkout iLCSoftDoc repository
+          uses: actions/checkout@master
+          with:
+              path: main
+
+        -name Checkout LCIO repository
         - uses: actions/checkout@master
           with:
               repository: dudarboh/LCIO
               path: lcio
 
-        - name: Doxygen Action
+        - name: Create Doxygen documentation and a tag file
           uses: mattnotmitt/doxygen-action@v1.3.1
           with:
               working-directory: 'lcio/doc'
               doxyfile-path: 'Doxyfile'
 
-        - name: Setup tmate session
-          uses: mxschmitt/action-tmate@v3
-
+        - name: Copy documentation to the iLCSoftDoc
         - run: |
-            mv ./lcio/doc/html ./docs/lcio/
-            mv ./lcio/doc/DoxyLCIO.tag ./tags/
+            mv ./lcio/doc/html ./main/docs/lcio/
+            mv ./lcio/doc/DoxyLCIO.tag ./main/tags/
 
-        - name: Deploy
+        - name: Push iLCSoftDoc changes to the webpage.
           uses: peaceiris/actions-gh-pages@v3
           with:
             github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_branch: docs_with_actions  # default: gh-pages
+            publish_branch: docs_with_actions
+
+        - name: Start interactive debug session
+          uses: mxschmitt/action-tmate@v3
