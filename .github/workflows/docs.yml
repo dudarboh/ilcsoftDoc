@@ -39,5 +39,5 @@ jobs:
               git commit -am "Publish LCIO documentation"
               git push
 
-        - name: Start interactive debug session
-          uses: mxschmitt/action-tmate@v3
+        # - name: Start interactive debug session
+        #   uses: mxschmitt/action-tmate@v3
