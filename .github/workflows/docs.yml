@@ -11,6 +11,7 @@ jobs:
           uses: actions/checkout@master
           with:
               path: main
+              ref: docs_with_actions
 
         - name: Checkout LCIO repository
           uses: actions/checkout@master
@@ -29,11 +30,12 @@ jobs:
             cp -r ./lcio/doc/html ./main/docs/lcio/
             cp ./lcio/doc/DoxyLCIO.tag ./main/tags/
 
-        - name: Push iLCSoftDoc changes to the webpage.
-          uses: peaceiris/actions-gh-pages@v3
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_branch: docs_with_actions
+        - name: Push iLCSoftDoc changes
+          run: |
+              git config --global user.name 'Bohdan Dudar'
+              git config --global user.email 'bohdan.dudar@desy.de'
+              git commit -am "Publish LCIO documentation"
+              git push
 
         - name: Start interactive debug session
           uses: mxschmitt/action-tmate@v3
